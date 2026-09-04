@@ -1,7 +1,7 @@
 using EnemyDropLoot.Config;
 using MelonLoader;
 
-[assembly: MelonInfo(typeof(EnemyDropLoot.Core), "EnemyDropLoot", "1.0.5", "DooDesch", null)]
+[assembly: MelonInfo(typeof(EnemyDropLoot.Core), "EnemyDropLoot", DooDesch.ModVersion.Current, "DooDesch", null)]
 [assembly: MelonGame("ReLUGames", "MIMESIS")]
 [assembly: MelonOptionalDependencies("MimicAPI")]
 

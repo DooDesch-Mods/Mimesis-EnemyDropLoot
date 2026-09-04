@@ -53,3 +53,7 @@ Raise `DropChance` toward `1.0` for more frequent drops, and raise `MaxDropsPerK
 ## Usage
 
 No keybinds and no menu - the mod is fully automatic. Enter any real dungeon mission map and the mod silently builds that room's loot pool; killed enemies may then drop map-appropriate items at their death position. The MelonLoader console confirms the pool loaded (for example, `Loaded N loot spawn bundles with M unique items`).
+
+## AI disclosure
+
+The mod icon is AI-generated. Code and configuration are hand-written.
