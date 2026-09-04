@@ -4,6 +4,11 @@ All notable changes to EnemyDropLoot are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 project adheres to Semantic Versioning.
 
+## [1.0.7] - 2026-09-04
+
+### Changed
+- The mod is built against MIMESIS 0.3.1 and tested in a running game on that build. Loot behaviour does not change.
+
 ## [1.0.6] - 2026-06-22
 
 ### Fixed
