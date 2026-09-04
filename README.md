@@ -71,3 +71,7 @@ The post-build step copies `EnemyDropLoot.dll` into the game's `Mods` directory.
 ## Credits / License
 
 Author: DooDesch. Licensed under the MIT License. Source and releases: [Mimesis-EnemyDropLoot](https://github.com/DooDesch/Mimesis-EnemyDropLoot).
+
+## AI disclosure
+
+The mod icon is AI-generated. Code and configuration are hand-written.
