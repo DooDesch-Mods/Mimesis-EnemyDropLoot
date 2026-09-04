@@ -4,6 +4,11 @@ All notable changes to EnemyDropLoot are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 project adheres to Semantic Versioning.
 
+## [1.0.8] - 2026-09-04
+
+### Fixed
+- The mod reports its version. In 1.0.7 the release build got no version, thus MelonLoader and every mod manager showed `0.0.0-dev`.
+
 ## [1.0.7] - 2026-09-04
 
 ### Changed

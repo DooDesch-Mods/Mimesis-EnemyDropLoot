@@ -110,6 +110,7 @@ jobs:
       - name: Build the project
         run: >
           dotnet build --configuration Release
+          /p:Version="${{ steps.version-check.outputs.version }}"
           /p:WorkspaceLibPath="${{ github.workspace }}/Workspace/lib"
           /p:GameManagedPath="${{ github.workspace }}/Workspace/lib/game"
           /p:GameAssemblyPath="${{ github.workspace }}/Workspace/lib/game"
