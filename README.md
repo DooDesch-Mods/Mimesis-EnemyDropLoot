@@ -5,7 +5,7 @@
 
 > Dungeon enemies in MIMESIS now drop loot - every kill rolls against the current map's own loot pool and can drop a map-appropriate item next to the corpse, so combat actually rewards you.
 
-![Version](https://img.shields.io/badge/version-1.0.9-blue)
+![Version](https://img.shields.io/badge/version-1.0.10-blue)
 ![Game](https://img.shields.io/badge/game-MIMESIS-purple)
 ![MelonLoader](https://img.shields.io/badge/MelonLoader-0.7.3+-green)
 ![Status](https://img.shields.io/badge/status-working-brightgreen)
@@ -43,6 +43,8 @@ For Nexus, install [MimicAPI 0.4.2](https://www.nexusmods.com/mimesis/mods/11) s
 ## Configuration
 
 Stored in `UserData/MelonPreferences.cfg` under the `EnemyDropLoot` category.
+
+Each Steam lobby uses a snapshot of the host's `Enabled`, `DropChance` and `MaxDropsPerKill` settings. Only the host spawns extra loot; clients receive the same server objects. Client configuration is not overwritten. If the host does not have EnemyDropLoot, no extra drops are added. Change the host configuration before creating the next lobby.
 
 | Option | Description | Default | Values/Range |
 |--------|-------------|---------|--------------|
