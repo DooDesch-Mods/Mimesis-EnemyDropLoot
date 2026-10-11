@@ -5,7 +5,7 @@
 
 > Dungeon enemies in MIMESIS now drop loot - every kill rolls against the current map's own loot pool and can drop a map-appropriate item next to the corpse, so combat actually rewards you.
 
-![Version](https://img.shields.io/badge/version-1.0.3-blue)
+![Version](https://img.shields.io/badge/version-1.0.9-blue)
 ![Game](https://img.shields.io/badge/game-MIMESIS-purple)
 ![MelonLoader](https://img.shields.io/badge/MelonLoader-0.7.3+-green)
 ![Status](https://img.shields.io/badge/status-working-brightgreen)
@@ -14,8 +14,8 @@
 
 - Rolls for loot whenever an enemy dies in an active dungeon room and spawns the reward at the corpse.
 - Builds its loot pool from the live dungeon's own spawn data, so drops only ever contain items that could naturally appear on that level.
-- Picks each drop through the source's own weighted roll, with a fallback so a kill rarely comes up empty.
-- Spawns loot with the game's own helpers: scatters within a 2 m radius and snaps to the navmesh, for reliable, valid positions.
+- Picks each drop through the source's own weighted roll, with a fallback to a known candidate item if a roll yields nothing.
+- Spawns loot with the game's own helpers: snaps to the nearest navmesh point before spawning.
 - Only activates inside real dungeon rooms; shop, tram and arena scenes are never touched.
 - Configurable drop chance and number of rolls per kill via MelonPreferences.
 
@@ -23,18 +23,20 @@
 
 | Component | Version |
 |-----------|---------|
-| MIMESIS | 0.3.0 (current Steam build) |
+| MIMESIS | 0.3.2 |
 | MelonLoader | 0.7.3+ |
-| MimicAPI | Required - [NeoMimicry/MimicAPI](https://github.com/NeoMimicry/MimicAPI) |
+| MimicAPI | Required - MimicAPI 0.4.2, [DooDesch fork](https://github.com/DooDesch/MimicAPI), included in the Nexus archive |
 
 EnemyDropLoot uses MimicAPI to read private game internals, so MimicAPI must be installed for the mod to work.
+
+The Nexus archive includes the maintained MimicAPI 0.4.2 fork. The Thunderstore manifest still refers to the original NeoMimicry package.
 
 ## Installation
 
 - Recommended: install via a Thunderstore mod manager (r2modman / Gale). It pulls in MelonLoader and MimicAPI for you.
 - Manual:
   1. Make sure MelonLoader 0.7.3+ is installed in your game folder.
-  2. Download `EnemyDropLoot.dll` from the [Releases page](https://github.com/DooDesch/Mimesis-EnemyDropLoot/releases).
+  2. Download `EnemyDropLoot.dll` from the [Releases page](https://github.com/DooDesch-Mods/Mimesis-EnemyDropLoot/releases).
   3. Copy `EnemyDropLoot.dll` **and** `MimicAPI.dll` into `MIMESIS/Mods/`.
   4. Launch the game once so the config section is generated.
 
@@ -56,4 +58,6 @@ No keybinds and no menu - the mod is fully automatic. Enter any real dungeon mis
 
 ## AI disclosure
 
-The mod icon is AI-generated. Code and configuration are hand-written.
+The mod icon is AI-generated.
+
+Built against MIMESIS 0.3.2 / MelonLoader 0.7.3.

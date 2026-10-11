@@ -4,6 +4,10 @@ All notable changes to EnemyDropLoot are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 project adheres to Semantic Versioning.
 
+## [1.0.9] - 2026-10-11
+
+- Built against MIMESIS 0.3.2 with the updated MimicAPI fork. Loot settings are unchanged.
+
 ## [1.0.8] - 2026-09-04
 
 ### Fixed
