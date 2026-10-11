@@ -4,6 +4,11 @@ All notable changes to EnemyDropLoot are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 project adheres to Semantic Versioning.
 
+## [1.0.10] - 2026-10-11
+
+- Loot rules use the host's settings for each Steam lobby without overwriting saved client configuration.
+- Extra drops remain server-side; clients use vanilla loot behavior if the host does not have EnemyDropLoot.
+
 ## [1.0.9] - 2026-10-11
 
 - Built against MIMESIS 0.3.2 with the updated MimicAPI fork. Loot settings are unchanged.

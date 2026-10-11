@@ -22,12 +22,15 @@ namespace EnemyDropLoot
 #endif
 		}
 
-#if DEBUG
 		public override void OnUpdate()
 		{
+			DooDesch.HostSettings.Update();
+#if DEBUG
 			Debugging.DebugTools.Update();
+#endif
 		}
 
+#if DEBUG
 		public override void OnGUI()
 		{
 			Debugging.DebugTools.DrawOverlay();
@@ -35,4 +38,3 @@ namespace EnemyDropLoot
 #endif
 	}
 }
-
