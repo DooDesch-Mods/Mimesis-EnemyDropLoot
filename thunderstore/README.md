@@ -5,7 +5,7 @@
 
 > Dungeon enemies in MIMESIS now drop loot - every kill rolls against the current map's own loot pool and can drop a map-appropriate item next to the corpse, so combat actually rewards you.
 
-![Version](https://img.shields.io/badge/version-1.0.10-blue)
+![Version](https://img.shields.io/badge/version-1.0.11-blue)
 ![Game](https://img.shields.io/badge/game-MIMESIS-purple)
 ![MelonLoader](https://img.shields.io/badge/MelonLoader-0.7.3+-green)
 ![Status](https://img.shields.io/badge/status-working-brightgreen)
@@ -23,13 +23,13 @@
 
 | Component | Version |
 |-----------|---------|
-| MIMESIS | 0.3.2 |
+| MIMESIS | 0.4.0 |
 | MelonLoader | 0.7.3+ |
-| MimicAPI | Required - MimicAPI 0.4.2, [Nexus download](https://www.nexusmods.com/mimesis/mods/11), install separately |
+| MimicAPI | Required - MimicAPI 0.4.3, [Nexus download](https://www.nexusmods.com/mimesis/mods/11), install separately |
 
 EnemyDropLoot uses MimicAPI to read private game internals, so MimicAPI must be installed for the mod to work.
 
-For Nexus, install [MimicAPI 0.4.2](https://www.nexusmods.com/mimesis/mods/11) separately. Keep one `Mods/MimicAPI.dll`; the mod archive does not include it. Thunderstore resolves its existing MimicAPI dependency through the mod manager.
+For Nexus, install [MimicAPI 0.4.3](https://www.nexusmods.com/mimesis/mods/11) separately. Keep one `Mods/MimicAPI.dll`; the mod archive does not include it. Thunderstore resolves its existing MimicAPI dependency through the mod manager.
 
 ## Installation
 
@@ -62,4 +62,4 @@ No keybinds and no menu - the mod is fully automatic. Enter any real dungeon mis
 
 The mod icon is AI-generated.
 
-Built against MIMESIS 0.3.2 / MelonLoader 0.7.3.
+Built against MIMESIS 0.4.0 / MelonLoader 0.7.3.

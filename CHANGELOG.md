@@ -4,6 +4,12 @@ All notable changes to EnemyDropLoot are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 project adheres to Semantic Versioning.
 
+## [1.0.11] - 2026-10-27
+
+### Fixed
+
+- Skip extra loot when no valid navmesh position is available, matching the game's monster drops. Report the skipped spawn and stop further drop attempts for that monster.
+
 ## [1.0.10] - 2026-10-11
 
 - Loot rules use the host's settings for each Steam lobby without overwriting saved client configuration.

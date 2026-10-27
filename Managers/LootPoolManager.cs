@@ -98,7 +98,7 @@ namespace EnemyDropLoot.Managers
 			{
 				if (TryPickItem(out int itemMasterId))
 				{
-					LootSpawnService.TrySpawnLoot(monster, itemMasterId);
+					if (!LootSpawnService.TrySpawnLoot(monster, itemMasterId)) break;
 				}
 			}
 		}
