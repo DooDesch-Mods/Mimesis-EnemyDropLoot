@@ -10,27 +10,27 @@ namespace EnemyDropLoot.Services
 	{
 		internal static bool TrySpawnLoot(VMonster monster, int itemMasterId)
 		{
-			ItemElement? itemElement = monster.VRoom.GetNewItemElement(itemMasterId, isFake: false);
-			if (itemElement == null)
+			VWorld? vworld = CoreAPI.GetVWorld();
+			if (vworld == null)
 			{
+				MelonLogger.Warning($"EnemyDropLoot: Skipping loot item {itemMasterId} for monster {monster.MasterID}: world is unavailable.");
 				return false;
 			}
 
-			// Place the drop exactly like the game's own monster loot (VMonster.OnDying): snap the monster's
-			// position to the nearest navmesh poly with the DEFAULT search radius, and NO horizontal scatter.
-			// This keeps the drop on valid navmesh near the monster, inside the room's loot-collecting volume, so
-			// it participates in the same drain/cleanup as vanilla loot (the old 2m scatter + tight 2f snap could
-			// land loot outside that volume, where the game never cleans it up).
+			// Match native monster loot: snap to the nearest navigable point without horizontal scatter.
 			Vector3 spawnPos = monster.PositionVector;
-			Vector3 nearestPos = spawnPos;
-			VWorld? vworld = CoreAPI.GetVWorld();
-			if (vworld != null)
+			Vector3 nearestPos = vworld.FindNearestPoly(spawnPos);
+			if (nearestPos == NavMeshConstants.INVALID_POSITION)
 			{
-				Vector3 navPos = vworld.FindNearestPoly(spawnPos);
-				if (navPos != NavMeshConstants.INVALID_POSITION)
-				{
-					nearestPos = navPos;
-				}
+				MelonLogger.Warning($"EnemyDropLoot: Skipping loot item {itemMasterId} for monster {monster.MasterID}: no valid navmesh position near {spawnPos}.");
+				return false;
+			}
+
+			ItemElement? itemElement = monster.VRoom.GetNewItemElement(itemMasterId, isFake: false);
+			if (itemElement == null)
+			{
+				MelonLogger.Warning($"EnemyDropLoot: Failed to create loot item {itemMasterId} for monster {monster.MasterID}.");
+				return false;
 			}
 
 			PosWithRot dropPos = monster.Position.Clone();
