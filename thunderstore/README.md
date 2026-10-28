@@ -5,10 +5,12 @@
 
 > Dungeon enemies in MIMESIS now drop loot - every kill rolls against the current map's own loot pool and can drop a map-appropriate item next to the corpse, so combat actually rewards you.
 
-![Version](https://img.shields.io/badge/version-1.0.11-blue)
+![Version](https://img.shields.io/badge/version-1.0.12-blue)
 ![Game](https://img.shields.io/badge/game-MIMESIS-purple)
 ![MelonLoader](https://img.shields.io/badge/MelonLoader-0.7.3+-green)
 ![Status](https://img.shields.io/badge/status-working-brightgreen)
+
+![EnemyDropLoot in MIMESIS](https://raw.githubusercontent.com/DooDesch-Mods/Mimesis-EnemyDropLoot/main/docs/img/header.jpg)
 
 ## Features
 
@@ -18,6 +20,16 @@
 - Spawns loot with the game's own helpers: snaps to the nearest navmesh point before spawning.
 - Only activates inside real dungeon rooms; shop, tram and arena scenes are never touched.
 - Configurable drop chance and number of rolls per kill via MelonPreferences.
+
+## Screenshots
+
+![Native dungeon enemies in MIMESIS before a kill](https://raw.githubusercontent.com/DooDesch-Mods/Mimesis-EnemyDropLoot/main/docs/img/dungeon-enemies.jpg)
+
+A real MIMESIS dungeon encounter. The drop photo below comes from a separate captured kill.
+
+![A native bust and broken umbrella dropped by EnemyDropLoot beside a defeated mimic](https://raw.githubusercontent.com/DooDesch-Mods/Mimesis-EnemyDropLoot/main/docs/img/enemy-drops.jpg)
+
+A bust and broken umbrella beside the defeated mimic. Both visible items are matched to EnemyDropLoot spawns; this photo session uses 100% drop chance and three rolls.
 
 ## Requirements
 
@@ -58,8 +70,8 @@ Raise `DropChance` toward `1.0` for more frequent drops, and raise `MaxDropsPerK
 
 No keybinds and no menu - the mod is fully automatic. Enter any real dungeon mission map and the mod silently builds that room's loot pool; killed enemies may then drop map-appropriate items at their death position. The MelonLoader console confirms the pool loaded (for example, `Loaded N loot spawn bundles with M unique items`).
 
-## AI disclosure
+## Images
 
-The mod icon is AI-generated.
+Gallery images are captured in MIMESIS; release artwork uses real game photos.
 
 Built against MIMESIS 0.4.0 / MelonLoader 0.7.3.
