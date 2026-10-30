@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using EnemyDropLoot.Config;
 using EnemyDropLoot.Services;
 using MelonLoader;
@@ -15,12 +17,18 @@ namespace EnemyDropLoot.Managers
 
 		private static IVroom _activeRoom = null!;
 		private static bool _hasActiveRoom;
+		private static string _allowText;
+		private static string _blockText;
+		private static HashSet<int> _allowed = new();
+		private static HashSet<int> _blocked = new();
+		private static bool _emptyFilterReported;
 
 		internal static void Reset()
 		{
 			LootSources.Clear();
 			FallbackItemIds.Clear();
 			_hasActiveRoom = false;
+			_emptyFilterReported = false;
 #if DEBUG
 			Debugging.DebugTools.OnRoomReset();
 #endif
@@ -96,10 +104,7 @@ namespace EnemyDropLoot.Managers
 
 			for (int i = 0; i < dropCount; i++)
 			{
-				if (TryPickItem(out int itemMasterId))
-				{
-					if (!LootSpawnService.TrySpawnLoot(monster, itemMasterId)) break;
-				}
+				if (!TryPickItem(out int itemMasterId) || !LootSpawnService.TrySpawnLoot(monster, itemMasterId)) break;
 			}
 		}
 
@@ -110,6 +115,24 @@ namespace EnemyDropLoot.Managers
 			if (LootSources.Count == 0)
 			{
 				return false;
+			}
+			RefreshFilters();
+			if (_allowed.Count != 0 || _blocked.Count != 0)
+			{
+				int[] eligible = FallbackItemIds.Where(IsAllowed).ToArray();
+				if (eligible.Length == 0)
+				{
+					if (!_emptyFilterReported) MelonLogger.Msg("EnemyDropLoot: No map loot matches the host's item filters; extra drops skipped.");
+					_emptyFilterReported = true;
+					return false;
+				}
+				for (int attempt = 0; attempt < 32; attempt++)
+				{
+					int candidate = LootSources[UnityEngine.Random.Range(0, LootSources.Count)].GetPickedItemValue();
+					if (candidate != 0 && IsAllowed(candidate)) { itemMasterId = candidate; return true; }
+				}
+				itemMasterId = eligible[UnityEngine.Random.Range(0, eligible.Length)];
+				return true;
 			}
 
 			RandomSpawnedItemActorData source = LootSources[UnityEngine.Random.Range(0, LootSources.Count)];
@@ -127,6 +150,20 @@ namespace EnemyDropLoot.Managers
 			itemMasterId = pickedItem;
 			return true;
 		}
+
+		private static bool IsAllowed(int id) => (_allowed.Count == 0 || _allowed.Contains(id)) && !_blocked.Contains(id);
+		private static void RefreshFilters()
+		{
+			string allow = EnemyDropLootPreferences.AllowedItemIds, block = EnemyDropLootPreferences.BlockedItemIds;
+			if (allow == _allowText && block == _blockText) return;
+			_allowed = ParseIds(allow);
+			_blocked = ParseIds(block);
+			_allowText = allow;
+			_blockText = block;
+			_emptyFilterReported = false;
+		}
+		private static HashSet<int> ParseIds(string text) => string.IsNullOrWhiteSpace(text) ? new HashSet<int>() :
+			new HashSet<int>(text.Split(',').Select(id => int.Parse(id, NumberStyles.Integer, CultureInfo.InvariantCulture)));
 	}
 }
 

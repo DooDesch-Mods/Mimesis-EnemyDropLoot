@@ -5,7 +5,7 @@
 
 > Dungeon enemies in MIMESIS now drop loot - every kill rolls against the current map's own loot pool and can drop a map-appropriate item next to the corpse, so combat actually rewards you.
 
-![Version](https://img.shields.io/badge/version-1.1.0-blue)
+![Version](https://img.shields.io/badge/version-1.2.0-blue)
 ![Game](https://img.shields.io/badge/game-MIMESIS-purple)
 ![MelonLoader](https://img.shields.io/badge/MelonLoader-0.7.3+-green)
 ![Status](https://img.shields.io/badge/status-working-brightgreen)
@@ -55,20 +55,22 @@ For Nexus, install [MimicAPI 0.4.3](https://www.nexusmods.com/mimesis/mods/11) s
 
 ## Configuration
 
-Stored in `UserData/MelonPreferences.cfg` under the `EnemyDropLoot` category.
+Stored in `UserData/MelonPreferences.cfg` under `[EnemyDropLoot]`.
 
-Each Steam lobby uses a snapshot of the host's settings. Only the host spawns extra loot or suppresses fake death drops; clients receive the same server objects. Client configuration is not overwritten. If the host does not have EnemyDropLoot, vanilla drop behavior is kept. Change the host configuration before creating the next lobby.
+Gameplay settings follow the lobby host without overwriting saved client preferences. Without the mod on the host, clients use vanilla behavior. Live settings apply after the host changes them through a MelonPreferences UI or reloads the preferences; editing the file alone does not reload it. Use the same current mod version on host and clients for the new options and live updates. Older versions retain their initial legacy snapshot. Invalid new values use the registered default with a warning.
 
-| Option | Description | Default | Values/Range |
-|--------|-------------|---------|--------------|
-| `Enabled` | Master toggle for the mod. | `true` | `true` / `false` |
-| `DropChance` | Chance per roll that a slain enemy drops loot. Clamped to 0-1 at read time. | `0.1` | `0.0` - `1.0` |
-| `MaxDropsPerKill` | Maximum number of loot rolls performed per enemy. Clamped to 0-100; the roll routine performs at least 1 roll. | `1` | `0` - `100` |
-| `RemoveFakeItemDrops` | Prevent fake inventory items from dropping when a creature dies. Requires `Enabled = true`. Real items and extra loot are kept. | `false` | `true` / `false` |
+All settings are live for subsequent kills and drops. Only the host spawns extra loot or suppresses fake death drops; clients receive those server objects.
 
-Each kill performs `max(1, MaxDropsPerKill)` rolls, and each roll succeeds when a random value is at or below `DropChance`. Raise `DropChance` toward `1.0` for more frequent drops, and raise `MaxDropsPerKill` for the chance of multiple drops per enemy.
+| Option | Default | Range and effect |
+|---|---|---|
+| `Enabled` | `true` | Master switch. |
+| `DropChance` | `0.1` | Chance per roll, clamped to 0-1. Zero produces no extra loot; 1 succeeds on every roll. |
+| `MaxDropsPerKill` | `1` | Rolls per kill, clamped to 0-100. Zero performs no rolls. |
+| `RemoveFakeItemDrops` | `false` | Filter fake inventory items from death drops while Enabled is true. |
+| `AllowedItemIds` | Empty | Comma-separated positive item master IDs, up to 128. Empty allows every eligible current-map item. |
+| `BlockedItemIds` | Empty | Comma-separated positive item master IDs, up to 128. Blocked IDs take priority. |
 
-To remove fake death drops, set `RemoveFakeItemDrops = true` under `[EnemyDropLoot]` on the host before creating a lobby. This filters fake items from the native death inventory; it does not turn them into real loot or remove fake items already on the ground. Living mimics can still deliberately drop fake items. Leave the option off for vanilla behavior. Older clients can join: the original loot settings keep their existing snapshot format, and the host controls which objects spawn.
+Filters apply only to extra mod loot and never introduce items outside the current map pool. If no eligible item remains, no extra item is spawned. `RemoveFakeItemDrops` preserves real items, native rewards and extra loot. It does not remove items already on the ground or fake items deliberately dropped by living mimics.
 
 ## Usage
 
