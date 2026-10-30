@@ -4,6 +4,13 @@ All notable changes to EnemyDropLoot are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 project adheres to Semantic Versioning.
 
+## [1.1.0] - 2026-10-30
+
+### Added
+
+- Optional host setting `RemoveFakeItemDrops` prevents fake inventory items from dropping on death. Real inventory items, vanilla rewards and extra mod loot are kept. Disabled by default; enable it in the host configuration before creating a lobby.
+- Keep the original host-settings format compatible with older clients. The fake-drop option uses a separate settings snapshot and only the host changes death drops.
+
 ## [1.0.12] - 2026-10-28
 
 ### Changed
