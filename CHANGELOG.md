@@ -4,6 +4,14 @@ All notable changes to EnemyDropLoot are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 project adheres to Semantic Versioning.
 
+## [1.2.0] - 2026-10-30
+
+### Changed
+
+- Apply host loot settings and the fake death-drop option live for subsequent kills.
+- Add allow and block filters for item master IDs within the current map pool; blocked IDs take priority.
+- Respect zero drop rolls and zero probability as no extra loot. Preserve existing defaults.
+
 ## [1.1.0] - 2026-10-30
 
 ### Added
